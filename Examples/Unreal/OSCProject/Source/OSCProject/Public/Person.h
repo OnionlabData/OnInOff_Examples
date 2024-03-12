@@ -17,17 +17,17 @@ public:
 	UPROPERTY(EditAnywhere)
 		UStaticMeshComponent* Mesh;
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 		void UpdateXYZ(FVector FLC);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 		void SetIndex(int Index);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 		bool IsMyIndex(int Id);
 
-	UFUNCTION(BlueprintCallable)
-		bool IsNotUsed(int Id);
+	UFUNCTION()
+		bool Used(int Id);
 
 	UFUNCTION()
 		void DestroyPerson();
@@ -42,12 +42,13 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-public:
+private:
 
 	int MyIndex = 0;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY()
 	bool NotUsed;
-	FTimerHandle FuzeTimerHandle;
+	FTimerHandle Timer;
+public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float NoMsgOSC = 0.5f;
 };

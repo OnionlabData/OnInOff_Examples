@@ -27,7 +27,7 @@ void APerson::BeginPlay()
 void APerson::UpdateXYZ(FVector FLC)
 {
 	SetActorLocation(FLC);
-	GetWorld()->GetTimerManager().SetTimer(FuzeTimerHandle, this, &APerson::DestroyPerson, NoMsgOSC, false);
+	GetWorld()->GetTimerManager().SetTimer(Timer, this, &APerson::DestroyPerson, NoMsgOSC, false);
 }
 
 void APerson::SetIndex(int index)
@@ -40,7 +40,7 @@ bool APerson::IsMyIndex(int Index)
 {
 	return MyIndex == Index;
 }
-bool APerson::IsNotUsed(int Id)
+bool APerson::Used(int Id)
 {
 	return NotUsed;
 }

@@ -18,7 +18,7 @@ AOSC_Client::AOSC_Client()
 void AOSC_Client::BeginPlay()
 {
 	Super::BeginPlay();
-	GetWorld()->GetTimerManager().SetTimer(FuzeTimerHandle, this, &AOSC_Client::DestroyPerson, NoMsgOSC, true);
+	GetWorld()->GetTimerManager().SetTimer(Timer, this, &AOSC_Client::DestroyPerson, NoMsgOSC, true);
 }
 
 void AOSC_Client::OSCMsgReceived(int index, float x, float y, float height, float size)
@@ -47,13 +47,9 @@ void AOSC_Client::OSCMsgReceived(int index, float x, float y, float height, floa
 		{
 			if (YourPersonArray[i]->IsMyIndex(index))
 				YourPersonArray[i]->UpdateXYZ(OSC_Map[index]);
-
-			if (false == YourPersonArray[i]->IsNotUsed(i))
-			{
-				OSC_Map.Remove(i);
-				YourPersonArray[i]->DestroyThis();
-				YourPersonArray.RemoveAt(i);
-			}
+			
+			DestroyPerson();
+			
 		}	
 }
 
@@ -62,10 +58,9 @@ void AOSC_Client::DestroyPerson()
 	for (int i = YourPersonArray.Num()-1; i>=0; i--)
 	{
 	
-		if (false == YourPersonArray[i]->IsNotUsed(i))
+		if (false == YourPersonArray[i]->Used(i))
 		{
 			OSC_Map.Remove(i);
-			
 			YourPersonArray[i]->DestroyThis();
 			YourPersonArray.RemoveAt(i);
 		}

@@ -36,7 +36,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	FTimerHandle FuzeTimerHandle;
+	FTimerHandle Timer;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float NoMsgOSC = 0.2f;
 };
