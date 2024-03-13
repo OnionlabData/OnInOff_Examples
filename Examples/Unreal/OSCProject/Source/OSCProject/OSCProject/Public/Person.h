@@ -12,7 +12,6 @@ class OSCPROJECT_API APerson : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
 	APerson();
 	UPROPERTY(EditAnywhere)
 		UStaticMeshComponent* Mesh;
@@ -27,7 +26,7 @@ public:
 		bool IsMyIndex(int Id);
 
 	UFUNCTION()
-		bool Used(int Id);
+		bool Used();
 
 	UFUNCTION()
 		void DestroyPerson();
@@ -36,19 +35,14 @@ public:
 		void DestroyThis();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 private:
 
 	int MyIndex = 0;
-	UPROPERTY()
-	bool NotUsed;
+	bool Exist;
 	FTimerHandle Timer;
-public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float NoMsgOSC = 0.5f;
+	float NoMsgOSC = 0.5f;
 };

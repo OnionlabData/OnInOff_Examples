@@ -21,7 +21,7 @@ void AOSC_Client::BeginPlay()
 	GetWorld()->GetTimerManager().SetTimer(Timer, this, &AOSC_Client::DestroyPerson, NoMsgOSC, true);
 }
 
-void AOSC_Client::OSCMsgReceived(int index, float x, float y, float height, float size)
+void AOSC_Client::OSCMsgReceived(int index, float x, float y, float height, float size) 
 {	
 	float CoordX = x * 500;
 	float CoordY = y * 500;
@@ -30,47 +30,50 @@ void AOSC_Client::OSCMsgReceived(int index, float x, float y, float height, floa
 	const FVector FLC = FVector(CoordX, CoordY, CoordZ);
 	OSC_Map.Add(index, FLC);	
 	bool indexExists = false;
-	for (int i = 0; i < YourPersonArray.Num() && !indexExists; i++)
+
+	for (int i = 0; i < YourPersonArray.Num() && !indexExists; i++) 
 		{
 			indexExists = YourPersonArray[i]->IsMyIndex(index);
 		}
 
-	if (!indexExists)
+	if (!indexExists) 
 		{
-		APerson* YourPerson;
-			YourPerson = GetWorld()->SpawnActor<APerson>(ActorToSpawn, FLC, Rot);
-			YourPerson->SetIndex(index);
-			YourPersonArray.Add(YourPerson);	
+		    APerson* YourPerson;
+			YourPerson = GetWorld()->SpawnActor<APerson>(ActorToSpawn, FLC, Rot);  
+			YourPerson->SetIndex(index); 
+			YourPersonArray.Add(YourPerson);	 
 		}
-
+	
+	
 	for (int i = 0; i < YourPersonArray.Num(); i++)
 		{
 			if (YourPersonArray[i]->IsMyIndex(index))
+			{ 
 				YourPersonArray[i]->UpdateXYZ(OSC_Map[index]);
-			
-			DestroyPerson();
-			
+				break;
+			}
 		}	
+	if (false == YourPersonArray[index]->Used())
+	{
+		DestroyPerson();
+	}
 }
 
-void AOSC_Client::DestroyPerson()
+void AOSC_Client::DestroyPerson() 
 {
-	for (int i = YourPersonArray.Num()-1; i>=0; i--)
-	{
-	
-		if (false == YourPersonArray[i]->Used(i))
+	for (int i = YourPersonArray.Num()-1; i>=0; i--) 
+	{	
+		if (false == YourPersonArray[i]->Used()) 
 		{
-			OSC_Map.Remove(i);
+			OSC_Map.Remove(i); 
 			YourPersonArray[i]->DestroyThis();
-			YourPersonArray.RemoveAt(i);
-		}
-		
+			YourPersonArray.RemoveAt(i); 
+		}		
 	}
 }
 // Called every frame
 void AOSC_Client::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
