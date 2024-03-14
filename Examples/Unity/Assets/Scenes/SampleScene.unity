@@ -167,9 +167,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea9d0afbd106f845888dd295dc57f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  osc: {fileID: 806870753}
-  prefab: {fileID: 4464372481540170505, guid: 86f1fd5392f5f3748ad13e05322999eb, type: 3}
+  Osc: {fileID: 806870753}
+  Prefab: {fileID: 8891471203911688224, guid: 86f1fd5392f5f3748ad13e05322999eb, type: 3}
   TimerNumber: 1
+  ScaleFactorX: 100
+  ScaleFactorY: 100
 --- !u!1 &633241047
 GameObject:
   m_ObjectHideFlags: 0

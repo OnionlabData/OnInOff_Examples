@@ -7,62 +7,68 @@ using UnityEngine;
 
 public class Person : MonoBehaviour
 {
-
-    float Index; // Indice que se le otorga al objeto una vez instanciado.
-    
-    MovementBehaviour mv; // Script de movimiento del objeto.
-    
-    public bool used = false; //Bool que se utiliza para comprobar que se utiliza el indice.
+ 
+    //MOV AQUI
+    float Index; 
+        
+    bool used = false; 
    
     [Space(5)]
     [Tooltip("Tiempo antes de desactivar los objetos instanciados")]
-    public float TimerNumber;// Float que se usa para indicar el tiempo antes de la destrucción del objeto.
-    
-    private float TimerNumber2;// Float que se usa para obligar a TimerNumber a que sea diferente a 0, hasta el momento de la destrucción.
+    public float TimerNumber;
+    private float InitialTimer;
+    [Space(5)]
+    [Tooltip("Para modificar la velocidad del objeto")]
+    public float velocity = 5; 
+    Rigidbody2D _rb;
 
-    void Awake()
+    void Awake() 
     {
-        mv = GetComponent<MovementBehaviour>(); //Inicializar el componente de movimiento.
-       
-        TimerNumber2 = TimerNumber;     // Se obliga a TimerNumber2 ha tener el mismo numero que TimerNumber.
+        _rb = GetComponent<Rigidbody2D>();
+        used = true; 
+        InitialTimer = TimerNumber;    
     }
-    void Start()
-    { 
-        used = true; //Una vez instanciado el objeto, se pone a TRUE el booleano para indicar que existe.
-    }
-    void Update() // Esta funcion se utiliza de cronometro para indicar cuando hay que destruir el objeto. 
+
+    void Update()//Inicia un temporizador para detectar cuando ya no se utilitza más a esa persona.
     {       
-       TimerNumber -= Time.deltaTime;
-        
-        if (TimerNumber <= 0.0f) //Una vez que TimberNumber llega a 0, se le cambia su booleano a FALSE.
+       TimerNumber -= Time.deltaTime;        
+        if (TimerNumber <= 0.0f) 
         {
          used = false;           
-        }
-
+        }        
     }
-    public void SetIndex(float index) //Funcion que pone el Indice que recibe desde OSC_Client al indice de la persona.
+
+    public void MoveToTarget(Vector3 _dir) //Recibie un vector de dirección y mueve a la persona a esa nueva posición. 
+    {
+        if (_rb != null)
+        {
+            _rb.MovePosition(Vector3.MoveTowards(transform.position, _dir, velocity));
+        }
+    }
+
+    public void SetIndex(float index) //Modifica el indice de la persona al valor correspondiente.
     { 
         Index = index;        
     }
    
-    public bool IsMyIndex(float index) //Para comprobar que el indice que le llega es el mismo que el suyo. En caso que sea, se envia un TRUE. En caso contrario, se envia un FALSE.
+    public bool IsMyIndex(float index) //Para comprobar si el indice esta siendo usado o no.
     { 
            return Index == index; 
     }
     
-    public bool Used() //Para comprobar que valor tiene used.
+    public bool Used()  //Para comporbar si la persona esta siendo usada o no.
     {
         return used;
     }
    
-    public void UpdateXYZ(Vector3 Dir) //Para indicar los nuevos valores de las coordenadas de X,Y,Z que tiene la persona.
+    public void UpdateXYZ(Vector3 Dir) //Recibe un vector de dirección, lo envia a la función de movimiento, marca a la persona como usada y por ultimo, reinicia el temporizador al valor marcado al principio.
     {       
-        mv.MoveToTarget(Dir);
+        MoveToTarget(Dir);
         used = true;
-        TimerNumber = TimerNumber2;    
+        TimerNumber = InitialTimer;        
     }
   
-    public void Remove() // Funcion para destruir el objeto.
+    public void Remove() //Elimina a la persona de la escena.
     {      
         Destroy(gameObject);
     }

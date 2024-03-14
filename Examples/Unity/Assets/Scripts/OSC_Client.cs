@@ -7,100 +7,109 @@ using UnityEngine;
 
 
 public class OSC_Client : MonoBehaviour
-{   
+{
 
     [Space(5)]
     [Tooltip("Añadir GameObject con script de OSC Server")]
-    public OSC osc; // Script de OSC.
-   
+    public OSC Osc; 
     [Space(5)]
     [Tooltip("Añadir prefab del objeto que se desea instanciar, con script de MovementBehaviour, Person, complemento de RigidBody2D y complemento de Sprite Render")]
-    public GameObject prefab; // Prefab del objeto, en el gameobject es necesario añadir script de MovementBehaviour, Person, complemento de RigidBody2D y complemento de Sprite Render.
-   
-    List<GameObject> GBList; // Lista de objetos instanciados.
-   
-    private GameObject aa; // Objeto instanciado.
-   
+    public Person Prefab;
+    List<Person> PersonList;
     [Space(5)]
     [Tooltip("Tiempo antes de desactivar los objetos instanciados")]
-    public float TimerNumber;// Float que se usa para indicar el tiempo antes de la destrucción del objeto.
-   
-    private float TimerNumber2;// Float que se usa para obligar a TimerNumber a que sea diferente a 0, hasta el momento de la destrucción.
+    public float TimerNumber;
+    private float InitialTimer;
+    [Space(5)]
+    [Tooltip("Para modificar la escala con valor X")]
+    public float ScaleFactorX;
+    [Space(5)]
+    [Tooltip("Para modificar la escala con valor Y")]
+    public float ScaleFactorY;
 
-    void Start() //Cuando se inicia, crea la lista de personas, y manda una señal para recibir mensajes OSC.
+    void Awake() //Limita el framerate a 60 fps/s.
     {
-        GBList = new List<GameObject>();
-
-        osc.SetAddressHandler("/index", OnReceiveMSG);
-
-        TimerNumber2 = TimerNumber;
+        Application.targetFrameRate = 60;
     }
-    void Update() // Esta funcion se utiliza de cronometro para indicar cuando ya no llegan mas mensajes de OSC.
+
+    void Start() //Inicia el protocolo de recibida de OSC.
+    {
+        PersonList = new List<Person>();
+
+        Osc.SetAddressHandler("/index", OnReceiveMSG);
+
+        InitialTimer = TimerNumber;
+    }
+
+    void Update() //Inicia un temporizador para detectar cuando ya no se recibe mas mensajes de tipo OSC.
     {
         TimerNumber -= Time.deltaTime;
 
-            if(TimerNumber <=0.0f)
-             {
-               DestroyPerson(); //Invoca a la función DestroyPerson().
-             }
+        if (TimerNumber <= 0.0f)
+        {
+            //Cuando el temporizador llega a 0, inicia un protocolo para eliminar las personas creadas.
+            DestroyAll(); 
+        }
     }
-    void OnReceiveMSG(OscMessage message)
-    {     
-        float index = message.GetFloat(0); //Indice del objeto.
-         
-        float x = message.GetFloat(1); //Coordenada X del objeto.
+    void OnReceiveMSG(OscMessage message) //Inicia un protocolo para la recepción de mensajes OSC.
+    {
+        float index = message.GetFloat(0); 
 
-        float y = message.GetFloat(2); //Coordenada Y del objeto.
+        float x = message.GetFloat(1);
 
-        float z = message.GetFloat(3); //Coordenada Z del objeto.
+        float y = message.GetFloat(2);
 
-        Vector3 dir = new Vector3(x * 100, y * -100, z * 0); // Se utiliza para crear un vector en 3d con las coordenadas recibidas.
-        
-        bool Exist = false;     
+        float z = message.GetFloat(3); 
 
-         for(int i=0;i<GBList.Count && !Exist ;i++) // Se utiliza para comprobar si el indice de la persona existe o no.
-             {
-                Exist = GBList[i].GetComponent<Person>().IsMyIndex(index);
-             }
+        Vector3 dir = new Vector3(x * ScaleFactorX, y * -ScaleFactorY, z * 0); 
 
-         if (!Exist) // En caso de no existir el indice, se crea una persona nueva con ese indice.
-             {
-                aa = Instantiate(prefab, dir, Quaternion.identity);
+        bool Exist = false;
 
-                aa.GetComponent<Person>().SetIndex(index);
+        for (int i = 0; i < PersonList.Count && !Exist; i++) //Analiza la lista para determinar si una persona existe o no.
+        {
+            Exist = PersonList[i].IsMyIndex(index);
+        }
 
-                aa.name="Person " + index;           
-            
-                GBList.Add(aa);
-             }
+        if (!Exist) //En caso de no existir, se crea una persona con el indice que sea necesario.
+        {
+            Person aa = Instantiate(Prefab, dir, Quaternion.identity, transform);
 
-         for (int i = 0; i < GBList.Count; i++) // Se analiza toda la llista.
+            aa.SetIndex(index);
+
+            aa.name = "Person " + index;
+
+            PersonList.Add(aa);
+        }
+
+        for (int i = 0; i < PersonList.Count; i++) //Para cada indice, se le envia sus nuevas coordenadas XYZ.
+        {
+            if (PersonList[i].IsMyIndex(index))  
             {
-                 if (GBList[i].GetComponent<Person>().IsMyIndex(index)) //Para cada indice, se le envia el Vector3 Dir que le corresponde. 
-                     {
-                        GBList[i].GetComponent<Person>().UpdateXYZ(dir);
-                     }
-                 if (false == GBList[i].GetComponent<Person>().Used()) //En caso de detectar que el mensaje OSC  no envia un indice.
-                    {
-                         GBList[i].GetComponent<Person>().Remove(); // Invoca a la función Remove() de la persona, para destruirla.
-
-                         GBList.RemoveAt(i); //Se elimina de la lista el indice y la persona indicada.
-                    }                   
+                PersonList[i].UpdateXYZ(dir);
+            }
+            DestroyPersonNotUsed(i); //En caso de detectar que es un indice no usado, se procede a su elíminación.
         }
-        TimerNumber = TimerNumber2;
+        TimerNumber = InitialTimer; //Resetea el temporizador a su valor por defecto.
     }
-    void DestroyPerson() //Funcion que elimina a las personas, una vez que ya no se reciben mas mensajes OSC.
-    {      
-        for(int i = GBList.Count - 1; i >= 0; i--)
-        {            
-            if (false== GBList[i].GetComponent<Person>().Used())
-            {              
-                GBList[i].GetComponent<Person>().Remove(); // Invoca a la función Remove() de la persona, para destruirla.
 
-                GBList.RemoveAt(i); //Se elimina de la lista el indice y la persona indicada.              
-            }                                                                                
+    void DestroyAll()
+    {
+        for (int i = PersonList.Count - 1; i >= 0; i--)
+        {
+            DestroyPersonNotUsed(i);
         }
     }
-   }
-  
- 
+
+    void DestroyPersonNotUsed(int i) //Cuando se le envia un indice, destruye a esa persona.
+    {
+
+        if (false == PersonList[i].Used())
+        {
+            PersonList[i].Remove();
+
+            PersonList.RemoveAt(i);
+
+        }
+    }
+}
+
