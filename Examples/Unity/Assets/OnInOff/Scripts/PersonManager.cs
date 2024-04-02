@@ -12,7 +12,7 @@ public class PersonManager : MonoBehaviour
     public OSC Osc;
     [Tooltip("App target frames per second")]
     [SerializeField] private int _fps = 60;
-    [Tooltip("App target frames per second")]
+    [Tooltip("Parent object where person will be created in hierarchy")]
     [SerializeField] private Transform _personContainer;
     [Tooltip("Used to map coordinates. Sets top left corner of canvas")]
     [SerializeField] private Vector2 _topLeftCorner;
@@ -75,7 +75,7 @@ public class PersonManager : MonoBehaviour
         _currentPeople.Remove(personIndex);
     }
 
-    // Maps a value from ome arbitrary range to another arbitrary range
+    // Maps a value from one arbitrary range to another arbitrary range
     private float map(float value, float leftMin, float leftMax, float rightMin, float rightMax)
     {
         if (leftMax - leftMin == 0) return 0;
