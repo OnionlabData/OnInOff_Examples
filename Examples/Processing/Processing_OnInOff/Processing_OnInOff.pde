@@ -1,6 +1,6 @@
 /*
 ONINOFF PROCESSING EXAMPLE
-01/03/2024
+02/04/2024
 */
 
 // Before trying the sketch, you should import the library OSCP5 (From menu /Sketch/Import Library/Manage libraries...)
@@ -8,12 +8,11 @@ import oscP5.*;
 import netP5.*;
 // -----
 
-import java.util.*; 
-import java.util.stream.*; 
+import java.util.*;
 
 final int LISTENING_PORT = 12000;
 final String PERSON_PATTERN = "/index"; // OSC person pattern
-final int ALIVE_AFTER_UPDATED_MS = 500; // Time to remove a person after the last position input was received. In millis.
+final int ALIVE_AFTER_UPDATED_MS = 300; // Time to remove a person after the last position input was received. In millis.
 
 // Osc object
 OscP5 oscP5;
@@ -57,24 +56,21 @@ void oscEvent(OscMessage theOscMessage) {
 class PersonManager{
   
   // Holds current person objects
-  ArrayList<Person> people = new ArrayList<Person>();
+  HashMap<Integer, Person> people = new HashMap<Integer, Person>();
   
   PersonManager(){}
   
   // Checks if a new OSC input has to be assigned to an existing person or create one
   void addOrUpdate(int id, PVector normalizedPos){
     synchronized(this){
-      // Get all the current person ids
-      List<Integer> peopleIds = people.stream().map(p -> p.getId()).collect(Collectors.toList());
       PVector pos = new PVector(normalizedPos.x * width, normalizedPos.y * height);
       // If the OSC id is tracked, just update it
-      if(peopleIds.contains(id)){
-        int personIndex = peopleIds.indexOf(id);
-        people.get(personIndex).updatePos(pos);
+      if(people.containsKey(id)){
+        people.get(id).updatePos(pos);
       }
       // Otherwise create a new person with the new data
       else{
-        people.add(new Person(id, pos));
+        people.put(id, new Person(id, pos));
       }
     }
   }
@@ -82,10 +78,10 @@ class PersonManager{
   // Updates every person
   void updateAndDraw(){
     synchronized(this){
-      for(int i = people.size() - 1; i >= 0; i--){
-        Person currPerson = people.get(i);
-        // If a person id has not been received in a while, remove person
-        if(!currPerson.updateAndDraw()) people.remove(i);
+      Iterator<Map.Entry<Integer,Person>> iter = people.entrySet().iterator();
+      while (iter.hasNext()) {
+        Map.Entry<Integer,Person> currPerson = iter.next();
+        if(!currPerson.getValue().updateAndDraw()) iter.remove();
       }
     }
   }
