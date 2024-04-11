@@ -13,36 +13,30 @@ class OSCPROJECT_API APerson : public AActor
 	
 public:	
 	APerson();
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(BlueprintReadWrite,EditAnywhere)
 		UStaticMeshComponent* Mesh;
-
 	UFUNCTION()
 		void UpdateXYZ(FVector FLC);
-
 	UFUNCTION()
 		void SetIndex(int Index);
-
 	UFUNCTION()
 		bool IsMyIndex(int Id);
-
 	UFUNCTION()
-		bool Used();
-
+		bool Used(int Id);
 	UFUNCTION()
 		void DestroyPerson();
-
 	UFUNCTION()
 		void DestroyThis();
-
 protected:
 	virtual void BeginPlay() override;
-
 public:	
 	virtual void Tick(float DeltaTime) override;
 private:
-
 	int MyIndex = 0;
-	bool Exist;
+	UPROPERTY()
+	bool NotUsed;
 	FTimerHandle Timer;
-	float NoMsgOSC = 0.5f;
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(Units = "Seconds"))
+		float NoMsgOSC = 0.5f;
 };

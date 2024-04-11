@@ -5,52 +5,44 @@
 #include "Components/SphereComponent.h"
 #include "Components/ActorComponent.h"
 #include "Engine/StaticMesh.h"
-
 APerson::APerson()
 {
- 	
 	PrimaryActorTick.bCanEverTick = true;
-
 	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
-
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
-
-	Mesh->SetupAttachment(RootComponent);
+	Mesh->SetupAttachment(RootComponent);	
 }
-
-
 void APerson::BeginPlay()
 {
-	Super::BeginPlay();	
+	Super::BeginPlay();
 }
-void APerson::UpdateXYZ(FVector FLC) 
+void APerson::UpdateXYZ(FVector FLC)
 {
 	SetActorLocation(FLC);
-	GetWorld()->GetTimerManager().SetTimer(Timer, this, &APerson::DestroyPerson, NoMsgOSC, false); 
+	GetWorld()->GetTimerManager().SetTimer(Timer, this, &APerson::DestroyPerson, NoMsgOSC, false);
 }
 
-void APerson::SetIndex(int index) 
-{
+void APerson::SetIndex(int index)
+{	
 	MyIndex = index;
-	Exist = true;
+	NotUsed = true;
 }
-bool APerson::IsMyIndex(int Index) 
+bool APerson::IsMyIndex(int Index)
 {
 	return MyIndex == Index;
 }
-bool APerson::Used() 
+bool APerson::Used(int Id)
 {
-	return Exist;
+	return NotUsed;
 }
-void APerson::DestroyPerson() 
+void APerson::DestroyPerson()
 {
-	Exist = false;	
+	NotUsed = false;
 }
-void APerson::DestroyThis() 
-{	
+void APerson::DestroyThis()
+{
 	Destroy();	
 }
-
 void APerson::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);

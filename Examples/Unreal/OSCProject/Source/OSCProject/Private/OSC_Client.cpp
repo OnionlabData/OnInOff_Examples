@@ -9,69 +9,65 @@
 // Sets default values
 AOSC_Client::AOSC_Client()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 }
 
 // Called when the game starts or when spawned
 void AOSC_Client::BeginPlay()
 {
 	Super::BeginPlay();
-	GetWorld()->GetTimerManager().SetTimer(Timer, this, &AOSC_Client::DestroyPerson, NoMsgOSC, true);
+	//GetWorld()->GetTimerManager().SetTimer(Timer, this, &AOSC_Client::DestroyPerson, NoMsgOSC, true);
 }
 
-void AOSC_Client::OSCMsgReceived(int index, float x, float y, float height, float size) 
+void AOSC_Client::OSCMsgReceived(int index, float x, float y, float height, float size)
 {	
-	float CoordX = x * 500;
-	float CoordY = y * 500;
-	float CoordZ = 0;
-	const FRotator Rot = GetActorRotation();
-	const FVector FLC = FVector(CoordX, CoordY, CoordZ);
-	OSC_Map.Add(index, FLC);	
-	bool indexExists = false;
 
-	for (int i = 0; i < YourPersonArray.Num() && !indexExists; i++) 
+	GetWorld()->GetTimerManager().SetTimer(Timer, this, &AOSC_Client::DestroyPerson, NoMsgOSC, true);
+	float CoordX = x;	
+	float CoordY = y;	
+	float CoordZ = 0;	
+	const FRotator Rot = GetActorRotation();	
+	float MapCoordX = Map(CoordX, 0, 1, _TopLeftCorner.X, _BottomRightCorner.X);	
+	MapCoordX *= -1;	
+	float MapCoordY = Map(CoordY, 0, 1, _TopLeftCorner.Y, _BottomRightCorner.Y);	
+	FVector FLC = FVector(MapCoordX,MapCoordY, CoordZ);
+		if(Person_Map.Find(index))
 		{
-			indexExists = YourPersonArray[i]->IsMyIndex(index);
+			YourPersonArray[index]->UpdateXYZ(FLC);				
 		}
-
-	if (!indexExists) 
+		else
 		{
-		    APerson* YourPerson;
-			YourPerson = GetWorld()->SpawnActor<APerson>(ActorToSpawn, FLC, Rot);  
-			YourPerson->SetIndex(index); 
-			YourPersonArray.Add(YourPerson);	 
+			APerson* YourPerson;
+			YourPerson = GetWorld()->SpawnActor<APerson>(ActorToSpawn, FLC, Rot);
+			YourPerson->SetIndex(index);
+			YourPersonArray.Add(YourPerson);
+			Person_Map.Add(index,YourPerson);
 		}
-	
-	
-	for (int i = 0; i < YourPersonArray.Num(); i++)
-		{
-			if (YourPersonArray[i]->IsMyIndex(index))
-			{ 
-				YourPersonArray[i]->UpdateXYZ(OSC_Map[index]);
-				break;
-			}
-		}	
-	if (false == YourPersonArray[index]->Used())
-	{
-		DestroyPerson();
-	}
 }
 
-void AOSC_Client::DestroyPerson() 
+void AOSC_Client::DestroyPerson()
 {
-	for (int i = YourPersonArray.Num()-1; i>=0; i--) 
+	for (int i = YourPersonArray.Num()-1; i>=0; i--)
 	{	
-		if (false == YourPersonArray[i]->Used()) 
-		{
-			OSC_Map.Remove(i); 
+		if (false == YourPersonArray[i]->Used(i))
+		{			
+			Person_Map.Remove(i);
 			YourPersonArray[i]->DestroyThis();
-			YourPersonArray.RemoveAt(i); 
+			YourPersonArray.RemoveAt(i);
 		}		
 	}
 }
-// Called every frame
+
+float AOSC_Client::Map(float value, float LeftMin, float LeftMax, float RightMin, float RightMax)
+{	
+	if (LeftMax - LeftMin == 0)
+	{
+	return 0;		
+	}	
+	float valuee = RightMin + (value - LeftMin) * (RightMax - RightMin) / (LeftMax - LeftMin);	
+	return  valuee;
+}
+
 void AOSC_Client::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);

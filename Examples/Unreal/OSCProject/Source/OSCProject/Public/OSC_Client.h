@@ -16,20 +16,25 @@ public:
 		void OSCMsgReceived(int index, float x, float y, float height, float size);
 	UFUNCTION(BlueprintCallable)
 		void DestroyPerson();
+	
+	UFUNCTION(BlueprintCallable)
+		float Map(float value, float LeftMin, float LeftMax, float RightMin, float RightMax);
 	UPROPERTY(EditAnywhere, Category = "Spawn Character")
 		TSubclassOf<AActor>ActorToSpawn;
-	
+	UPROPERTY(EditAnyWhere, Category = "TopLeftCorner")
+		FVector2D _TopLeftCorner;
+	UPROPERTY(EditAnyWhere, Category = "BottomRightCorner")
+		FVector2D _BottomRightCorner;
+public:
 	TArray<APerson*> YourPersonArray;
-	
-	UPROPERTY(Category = Maps, EditAnywhere)
-		TMap<int, FVector> OSC_Map;
 
-	virtual void Tick(float DeltaTime) override;
+	UPROPERTY(Category = Maps, EditAnywhere)
+		TMap<int, APerson*> Person_Map;
 protected:
 	virtual void BeginPlay() override;
-
-private:
-	
+public:	
+	virtual void Tick(float DeltaTime) override;
 	FTimerHandle Timer;
-	float NoMsgOSC = 0.2f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite,meta=(Units="Seconds"))
+		float NoMsgOSC = 0.2f;
 };
