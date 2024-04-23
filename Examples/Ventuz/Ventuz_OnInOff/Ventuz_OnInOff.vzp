@@ -1,0 +1,232 @@
+﻿<VentuzProject GenerationID="b10c62c7-aee5-4297-ac05-39d167a43205" Version="7.1.2.434" ID="d412d3a9-2cd8-481e-83f0-b0532c00d1ef">
+  <Config>
+    <General>
+      <Name>Ventuz_OnInOff</Name>
+      <Author>OnInOff</Author>
+      <Copyright>2024 OnInOff</Copyright>
+      <Category>BASE</Category>
+      <Icon>iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAASFSURBVGhD7ZrfS1tnGMf9X1o13e5a1KSs0Is2atWuhV2KYo12UHZVduPV4mTFQcU1zUadWuygmg064rC62lGhZp3QNYPGgfFG40Ubf2Qo+AOMPsv3Pc/5kZ43rSc5py7DL3zAnvc97/P9Pjl5z6u05MyZs3TyZEVRAu8lLteHVMyUIIlsoBiA96MAh8lRgMPmKMBhYzlAefkH7xWZByOWAsRis7S6uirl8ePfMgVPiKJNTS3SOcnkMlVX12rmcI9sHojFYto8mReVAwfAQoHAbcqlra0tqqmpo7KyE4LZ2b95RNfTp9PaeG1tnbgnl27dCoh57wphKUBlpUd0MZcGBgaptNQlCgeD3/FVXV1dX2njg4N3+apZyWSSTp2qtD8AGB4e4TJmLSws0PHj5cJkVdVp2tjY4BGiV69eZ8bKOIArM3eRR8y6f39YrGNrAICF6uoaaHt7m0uZ1dHxhTAJJiZ+5atEIyMhLVxHh5+vmoW18SiWluoBZF5ULAfAopOTk1zOrCdPpjSj169/Lq6l02lqbGzSrk9NTYnrMj16NGn4pGwOALBgW9tV2t/f55LZQgfxBYUBMDc3R8+f/5n5WTF/4UJ9zk8Qa7a2tmU9PjIPRvIKgMWj0SiXNWto6J5muK/ve+rp6c3cozz7Q0M/8CyzXryIWuo+yCsA6O7+msuatbiY0B4Xj+cjsXvBEEgkEjzLrBs3urn7Lq2OzIMRywEAFoaZpaUlLm2W3/+loZMKnZ1dPGpWIrFEx45Z6z7IOwAMvW0vx0tL30kUpqcjPGpWf/+AofsOBwAo4PXW0vr6OlvI1s7OjthyEQDU138srsmENc6d8xoCH8w8KCgAOhUOj7INs27e7BEdhSl8kXMpHA5rX14r3Qd5BwAo1NzcQru7u2xFl95VJYDXWyP9tHBvY2MzPz7WzIOCA6BoJPI729E1NjamPdOYAx4+HOdRXZFIROv+ew8AUNDv72Q7uny+dkNXFdrbP+VRXThW5Nt9YEsAFI/H59kS0cuXMa2rly9/Qm63RwTAPJzzVcXj8YK6D2wJAILBb9kWzvK3RVdhbHT0F/FvNUAgEORZJH5WHzN1HVmNt1FwAIDCVVUeWl5eplQqlXnzujPmy6miwk1ra2ui6zAPMC+V+kfMxXgh3Qe2BQCh0E9iW4Up0Nv7jeg0Dmk+31XRaYA5odCPWeYPNQCAgYsXL1FLS6swBaLRv0QACDuQYtgl5jQ0XGLz+Xcf2BpABcauXPHR3t4e2ze/F1TjKrI1D4JtAVRUQw8e/MzWdd2502fLY2PEkQA4Pq+srLBtXfPz85kA+p7/nw2AM1AuXbv2mRZAdr9VHAngdp+WfgI48xfy1pVhewAAc9gm31R//2DxBMDvApubm2xd2YXOn6/O+g7I7rWKYwFgcnx8gu2TOFKox4tC934jjgQAMIh3QTq9J/4uhN8b7O4+cDQAzD579gfNzMzw/q+/A2T35IOjAQDO+/hrBIyr5osiAFDNKs+8/eaBowGAHsJ+88DxAE7z/wggGygmivy/25ylfwHX2o+83RPLRgAAAABJRU5ErkJggg==</Icon>
+    </General>
+    <Description>
+      <Detailed />
+    </Description>
+    <ProjectData>
+      <DataModel xmlns="http://www.ventuz.com/Ventuz/SceneModel/1.0" />
+    </ProjectData>
+    <AssetHandling />
+    <ProjectLicense>
+      <When>All</When>
+      <Ask>_AskAllowed</Ask>
+    </ProjectLicense>
+    <SystemLock>
+      <When>_AskAllowed</When>
+      <Ask>_AskAllowed</Ask>
+    </SystemLock>
+    <Fonts>
+      <Presets>
+        <Typeface Name="Default">
+          <Source>Arial</Source>
+          <Weight>Normal</Weight>
+          <Style>Normal</Style>
+          <Stretch>Normal</Stretch>
+        </Typeface>
+        <Typeface Name="Headline">
+          <Source>Arial</Source>
+          <Weight>Bold</Weight>
+          <Style>Normal</Style>
+          <Stretch>Normal</Stretch>
+        </Typeface>
+        <Typeface Name="Text">
+          <Source>Arial</Source>
+          <Weight>Normal</Weight>
+          <Style>Normal</Style>
+          <Stretch>Normal</Stretch>
+        </Typeface>
+        <Typeface Name="Highlight">
+          <Source>Arial</Source>
+          <Weight>Normal</Weight>
+          <Style>Italic</Style>
+          <Stretch>Normal</Stretch>
+        </Typeface>
+        <Typeface Name="Code">
+          <Source>Courier New</Source>
+          <Weight>Bold</Weight>
+          <Style>Normal</Style>
+          <Stretch>Normal</Stretch>
+        </Typeface>
+        <TextureStyle Name="Plain">
+          <Quality>Medium</Quality>
+          <Main Effect="Sharp" />
+        </TextureStyle>
+        <TextureStyle Name="Blur Shadow">
+          <Quality>Medium</Quality>
+          <Main Effect="Sharp" />
+          <Shadow Effect="Blur" BlurLevel="Medium" />
+        </TextureStyle>
+        <MeshStyle Name="Plain">
+          <Quality>Medium</Quality>
+          <ExtrusionDepth>0</ExtrusionDepth>
+          <Bevel>None</Bevel>
+          <Flags>FrontSide</Flags>
+          <BevelSize>0</BevelSize>
+        </MeshStyle>
+        <MeshStyle Name="Extruded">
+          <Quality>Medium</Quality>
+          <ExtrusionDepth>1</ExtrusionDepth>
+          <Bevel>None</Bevel>
+          <Flags>AllSides</Flags>
+          <BevelSize>0</BevelSize>
+        </MeshStyle>
+        <MeshStyle Name="Beveled">
+          <Quality>Medium</Quality>
+          <ExtrusionDepth>1</ExtrusionDepth>
+          <Bevel>Rounded</Bevel>
+          <Flags>AllSides, AllBevels</Flags>
+          <BevelSize>0.05</BevelSize>
+        </MeshStyle>
+        <Font2DStyle Name="Plain">
+          <Quality>Low</Quality>
+          <EffectLayers>
+            <Effect Style="FirstPlain" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="Textured" />
+            <Effect Style="None" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="None" />
+            <Effect Style="None" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="None" />
+            <Effect Style="None" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="None" />
+          </EffectLayers>
+        </Font2DStyle>
+        <Font2DStyle Name="Outlined">
+          <Quality>Low</Quality>
+          <EffectLayers>
+            <Effect Style="Outline" Color="255;0;0;255" StartOffset="0" Strength="3.55" Blur="0" Position="0, 0, -0.001" TextureMode="None" />
+            <Effect Style="FirstPlain" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="Textured" />
+            <Effect Style="None" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="None" />
+            <Effect Style="None" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="None" />
+          </EffectLayers>
+        </Font2DStyle>
+        <Font2DStyle Name="Blur Shadow">
+          <Quality>Low</Quality>
+          <EffectLayers>
+            <Effect Style="FirstPlain" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="Textured" />
+            <Effect Style="Ballon" Color="255;0;0;0" StartOffset="0" Strength="0" Blur="6" Position="0.05, -0.05, 0.05" TextureMode="None" />
+            <Effect Style="None" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="None" />
+            <Effect Style="None" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="None" />
+          </EffectLayers>
+        </Font2DStyle>
+        <Font2DStyle Name="Hard Shadow">
+          <Quality>Low</Quality>
+          <EffectLayers>
+            <Effect Style="FirstPlain" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="Textured" />
+            <Effect Style="Plain" Color="255;0;0;0" StartOffset="0" Strength="0" Blur="0" Position="0.05, -0.05, 0.05" TextureMode="None" />
+            <Effect Style="None" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="None" />
+            <Effect Style="None" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="None" />
+          </EffectLayers>
+        </Font2DStyle>
+        <Font2DStyle Name="Contour">
+          <Quality>Low</Quality>
+          <EffectLayers>
+            <Effect Style="Outline" Color="20;255;255;20" StartOffset="-1.75" Strength="1.6" Blur="0" Position="0, 0, -0.001" TextureMode="None" />
+            <Effect Style="FirstPlain" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="Textured" />
+            <Effect Style="None" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="None" />
+            <Effect Style="None" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="None" />
+          </EffectLayers>
+        </Font2DStyle>
+        <Font2DStyle Name="Pseudo 3D">
+          <Quality>Low</Quality>
+          <EffectLayers>
+            <Effect Style="FirstPlain" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="Textured" />
+            <Effect Style="Ballon" Color="235;255;0;200" StartOffset="3.75" Strength="0" Blur="5.8" Position="0, 0, 0" TextureMode="None" />
+            <Effect Style="Ballon" Color="210;255;0;0" StartOffset="7" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="None" />
+            <Effect Style="None" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="None" />
+          </EffectLayers>
+        </Font2DStyle>
+        <Font2DStyle Name="Neon Glow">
+          <Quality>Low</Quality>
+          <EffectLayers>
+            <Effect Style="Outline" Color="255;255;0;0" StartOffset="0" Strength="1.4" Blur="0" Position="0, 0, -0.001" TextureMode="None" />
+            <Effect Style="Outline" Color="30;255;0;255" StartOffset="7.3" Strength="1.4" Blur="0" Position="0, 0, -0.001" TextureMode="None" />
+            <Effect Style="Halo" Color="0;178;255;255" StartOffset="4.3" Strength="2" Blur="1" Position="0, 0, -0.001" TextureMode="None" />
+            <Effect Style="FirstPlain" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="Textured" />
+          </EffectLayers>
+        </Font2DStyle>
+        <Font2DStyle Name="Outline Neon">
+          <Quality>Low</Quality>
+          <EffectLayers>
+            <Effect Style="None" Color="0;0;0;0" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="None" />
+            <Effect Style="Outline" Color="255;255;255;255" StartOffset="2" Strength="1.3" Blur="0" Position="0, 0, 0" TextureMode="None" />
+            <Effect Style="Outline" Color="255;255;0;60" StartOffset="2.6" Strength="8" Blur="4" Position="0, 0, 0" TextureMode="None" />
+            <Effect Style="None" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="None" />
+          </EffectLayers>
+        </Font2DStyle>
+        <Font2DStyle Name="Outline Contrast">
+          <Quality>Low</Quality>
+          <EffectLayers>
+            <Effect Style="FirstPlain" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="Textured" />
+            <Effect Style="Outline" Color="255;0;0;0" StartOffset="1.3" Strength="2" Blur="0" Position="0, 0, 0" TextureMode="None" />
+            <Effect Style="None" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="None" />
+            <Effect Style="None" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="None" />
+          </EffectLayers>
+        </Font2DStyle>
+        <Font2DStyle Name="Outline Only">
+          <Quality>Low</Quality>
+          <EffectLayers>
+            <Effect Style="None" Color="0;0;0;0" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="None" />
+            <Effect Style="Outline" Color="255;255;255;255" StartOffset="2" Strength="2" Blur="0" Position="0, 0, 0" TextureMode="None" />
+            <Effect Style="None" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="None" />
+            <Effect Style="None" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="None" />
+          </EffectLayers>
+        </Font2DStyle>
+        <Font2DStyle Name="Outline Fine">
+          <Quality>Low</Quality>
+          <EffectLayers>
+            <Effect Style="Outline" Color="255;0;255;0" StartOffset="2" Strength="1" Blur="0" Position="0, 0, 0" TextureMode="None" />
+            <Effect Style="FirstPlain" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="Textured" />
+            <Effect Style="None" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="None" />
+            <Effect Style="None" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="None" />
+          </EffectLayers>
+        </Font2DStyle>
+        <Font2DStyle Name="Outline Multi">
+          <Quality>Low</Quality>
+          <EffectLayers>
+            <Effect Style="FirstPlain" Color="255;255;255;255" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="Textured" />
+            <Effect Style="Outline" Color="0;255;235;0" StartOffset="1.3" Strength="1" Blur="0" Position="0, 0, 0" TextureMode="None" />
+            <Effect Style="Outline" Color="30;255;0;255" StartOffset="3" Strength="1" Blur="0" Position="0, 0, 0" TextureMode="None" />
+            <Effect Style="Outline" Color="255;255;255;0" StartOffset="4.7" Strength="1" Blur="0" Position="0, 0, 0" TextureMode="None" />
+          </EffectLayers>
+        </Font2DStyle>
+        <Font2DStyle Name="Outline 3D">
+          <Quality>Low</Quality>
+          <EffectLayers>
+            <Effect Style="None" Color="0;0;0;0" StartOffset="0" Strength="0" Blur="0" Position="0, 0, 0" TextureMode="None" />
+            <Effect Style="Outline" Color="255;0;255;0" StartOffset="1.3" Strength="2" Blur="0" Position="0, 0, -0.1" TextureMode="None" />
+            <Effect Style="Outline" Color="255;255;255;255" StartOffset="1.3" Strength="2" Blur="0" Position="0, 0, 0" TextureMode="None" />
+            <Effect Style="Outline" Color="255;255;255;0" StartOffset="1.3" Strength="2" Blur="0" Position="0, 0, 0.1" TextureMode="None" />
+          </EffectLayers>
+        </Font2DStyle>
+      </Presets>
+    </Fonts>
+    <Emojis>
+      <Flags>None</Flags>
+    </Emojis>
+    <Gestures>
+      <SingleTapDuration>0.3</SingleTapDuration>
+      <TapAndHoldDuration>1.5</TapAndHoldDuration>
+      <MovementThresholdInPixels>3</MovementThresholdInPixels>
+      <IntersectOnlyBeneathGestures>true</IntersectOnlyBeneathGestures>
+      <IntersectOnlyBoundingVolumes>false</IntersectOnlyBoundingVolumes>
+      <InputSmoothingWeight>0</InputSmoothingWeight>
+      <InputInterpolationDelay>0</InputInterpolationDelay>
+      <IntersectHighLevelLayerFirst>true</IntersectHighLevelLayerFirst>
+    </Gestures>
+    <Format Width="1500" Height="1000" HDR="false" SDRLevelNits="100" />
+    <Logo>
+      <Show>false</Show>
+      <Position>BR</Position>
+      <Style>8</Style>
+      <MarginH>30</MarginH>
+      <MarginV>30</MarginV>
+    </Logo>
+    <Layouts />
+    <Rendersetup>
+      <UseRenderSetup />
+    </Rendersetup>
+  </Config>
+</VentuzProject>
