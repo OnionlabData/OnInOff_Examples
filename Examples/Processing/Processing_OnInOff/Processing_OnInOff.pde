@@ -10,7 +10,9 @@ import netP5.*;
 
 import java.util.*;
 
-final int LISTENING_PORT = 12000;
+final int LISTENING_PORT = 10000;
+String ip = "127.0.0.1"; 
+
 final String PERSON_PATTERN = "/index"; // OSC person pattern
 final int ALIVE_AFTER_UPDATED_MS = 300; // Time to remove a person after the last position input was received. In millis.
 
@@ -24,7 +26,7 @@ void setup() {
   size(800, 600);
   frameRate(30);
   // Creates OSC listener
-  oscP5 = new OscP5(this, LISTENING_PORT);
+  oscP5 = new OscP5(this, ip, LISTENING_PORT);
 }
 
 void draw() {
@@ -35,10 +37,9 @@ void draw() {
 
 // Manages OSC inputs
 void oscEvent(OscMessage theOscMessage) {
-  // Check if theOscMessage has the Oninoff person address pattern
+  // Check if theOscMessage has the person address pattern
   if(theOscMessage.checkAddrPattern(PERSON_PATTERN)==true) {
     // Check if the typetag is the right one: person_index (int) x_pos (float) y_pos (float)
-    if(theOscMessage.checkTypetag("iff")) {
       // Parse theOscMessage and extract the values from the osc message arguments
       int personId = theOscMessage.get(0).intValue();  
       float personX = theOscMessage.get(1).floatValue();
@@ -48,7 +49,7 @@ void oscEvent(OscMessage theOscMessage) {
       // Feedback
       //println("Received an osc message /index with id: " + personId);
       return;
-    }  
+    // }  
   } 
 }
 
